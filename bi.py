@@ -15,4 +15,5 @@ import sys ,struct
 
 '''
 h = hex(int(sys.argv[1],2))
-print (struct.unpack('>f',bytes.fromhex(h[2:10]))[0])
+f = (struct.unpack('>f',bytes.fromhex(h[2:10]))[0])
+print (round(f,ndigits=5))

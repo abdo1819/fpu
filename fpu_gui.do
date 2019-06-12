@@ -1,5 +1,5 @@
 package require Tk
-project open ./fpuGUI; #project directory
+project open ./fpu; #project directory
 wm title . "FPU"
 grid [ttk::frame .c -padding "0 10 15 25"] -column 0 -row 0 -sticky nwes
 
@@ -20,8 +20,8 @@ vsim work.fpu ;#design name (module name)
 puts "----GUI was built sccessfully----"
 proc calculate {} \
 {
-	set a_ "2#[exec ./fi.py $::opa]"
-	set b_ "2#[exec ./fi.py $::opb]"
+	set a_ "2#[exec python3 ./fi.py $::opa]"
+	set b_ "2#[exec python3 ./fi.py $::opb]"
 
 	force a $a_
 	force b $b_
@@ -46,7 +46,7 @@ proc execute {{a 1}} \
 	if { $a == 1 } {
 		run 1000
 		set res_ [examine -binary o]
-		set ::result [exec ./bi.py $res_];
+		set ::result [exec python3 ./bi.py $res_];
 	} else {
 		set ::result "use a valid symbol";		
 	}
