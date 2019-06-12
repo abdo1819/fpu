@@ -1,0 +1,3 @@
+[submodule "multiplier"]
+	path = multiplier
+	url = https://github.com/abdo1819/fpu_multipyler.git
