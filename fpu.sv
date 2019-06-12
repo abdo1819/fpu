@@ -1,3 +1,6 @@
+`include "multiplier/multi.sv"
+`include "adder/adder_floating_point/adder_floating_point.sv"
+`include "divider/fpu_division.sv"
 module fpu(input logic [1:0] funct ,
            input logic clk  ,
            input logic [31:0] a,b, 
