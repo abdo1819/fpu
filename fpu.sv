@@ -1,52 +1,34 @@
 `include "multiplier/multi.sv"
 `include "adder/adder_floating_point/adder_floating_point.sv"
-`include "divider/fpu_division.sv"
-module fpu(input logic [1:0] funct ,
-           input logic clk  ,
-           input logic [31:0] a,b, 
-           output logic[31:0] o);
+module fpu(
+    output logic [31:0] out,  //output
+    input logic [31:0] a,
+    input logic [31:0] b,
+    input logic [1:0] s
+    );
+
+logic [31:0] mu,ad,sb,di;
 
 
+// .there(here)
+multi multiplier(.a (a),.b (b),.op (mu));
+adder_floating_point adder(.operand_normalized_ieee_a (a) ,
+                           .operand_normalized_ieee_b (b),
+                           .final_sum (ad));
+adder_floating_point subtractor(.operand_normalized_ieee_a (a) ,
+                           .operand_normalized_ieee_b ({~b[31],b[30:0]}),
+                           .final_sum (sb));
 
-    reg [31:0] o1,o2,o3; 
-    reg fin1,fin2;
-    reg zero1;
-    reg ov1 ,und1;
-    reg funct1;
 
-
-
-    adder_floating_point a1(a,b, //opreands must be enterd normalized
-                            o1 ,//result
-                            fin1 ,//flag of finish
-                            //flags
-                            zero1 ,over1,und1,
-                            funct1//selector for adding operand a + or - operand b
-                            );
+always_comb
+begin
     
-    FPU_division f(clk,a,b,o2,fin2);
-    
-    multi m(o3,a,b);
-    
-    always@(posedge clk, funct[0])
-    begin
-        case(funct[0])
-            0:funct1=0;
-            1:funct1=1;
-            default:funct1=1'bz;
-        endcase
-    end
+    case(s)
+        2'b00: out = ad;
+        2'b01: out = sb;
+        2'b10: out = mu;
+        2'b11: out = di;
+    endcase
 
-    always@(negedge clk, funct,a,b,fin1,fin2,funct1)
-    begin
-        case(funct)
-            0:o=o1;
-            1:o=o1;
-            2:  if (fin2==1)
-                o=o2;
-                else o=32'bz;
-            3:o=o3;
-        default:o=32'bz;
-        endcase
-    end
-    endmodule
+end
+endmodule
