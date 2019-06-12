@@ -1,6 +1,0 @@
-[submodule "adder"]
-	path = adder
-	url = ./adder/adder.git
-[submodule "multiplier"]
-	path = multiplier
-	url = ./multiplier/multiplier.git
