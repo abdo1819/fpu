@@ -1,18 +1,23 @@
 `include "multiplier/multi.sv"
 `include "adder/adder_floating_point/adder_floating_point.sv"
-`include "divider/fpu_division.sv"
-module fpu(input logic [1:0] funct ,
-           input logic clk  ,
+`include "divider/FPU_division.sv"
+module fpu(input logic [1:0] funct ,       
            input logic [31:0] a,b, 
            output logic[31:0] o);
 
-
-
+//add an internal clk
+//DO NOT USE THIS CODE IN THE ORIGINAL PROJECT IT WAS INTENDED TO BE INTERNAL AND IT SHOULDN'T
+    logic clk ;
     reg [31:0] o1,o2,o3; 
     reg fin1,fin2;
     reg zero1;
     reg ov1 ,und1;
     reg funct1;
+
+always 
+    begin
+        clk =1; #5; clk = 0; #5;
+    end
 
 
 
