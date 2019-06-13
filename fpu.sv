@@ -3,20 +3,21 @@
 `include "divider/FPU_division.sv"
 module fpu(input logic [1:0] funct ,       
            input logic [31:0] a,b, 
-           output logic[31:0] o);
+           output logic[31:0] o,
+           output logic fin2);
 
 //add an internal clk
 //DO NOT USE THIS CODE IN THE ORIGINAL PROJECT IT WAS INTENDED TO BE INTERNAL AND IT SHOULDN'T
     logic clk ;
     reg [31:0] o1,o2,o3; 
-    reg fin1,fin2;
+    reg fin1;
     reg zero1;
     reg ov1 ,und1;
     reg funct1;
 
 always 
     begin
-        clk =1; #5; clk = 0; #5;
+        clk =1; #2; clk = 0; #2;
     end
 
 

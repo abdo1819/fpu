@@ -79,6 +79,19 @@ begin
   else if (operand_normalized_ieee_b [30:0]==0)
   final_sum [31:0] ={1'd0,8'd1,23'd0}; //result is inf
 
+  //if   operand_normalized_ieee_a is inf
+  else if (operand_normalized_ieee_a [30:0]=={8'd1,23'd0})
+  final_sum [31:0] ={1'd0,8'd1,23'd0}; //result is inf
+  
+   //if   operand_normalized_ieee_a is 0
+  else if (operand_normalized_ieee_a [30:0]==0)
+  final_sum [31:0] =0; //result is inf
+  
+  //if   operand_normalized_ieee_a or b are NAN
+ else if (operand_normalized_ieee_a [31:0]=={1'd0,8'd1,22'd0,1'd1}
+  ||operand_normalized_ieee_b [31:0]=={1'd0,8'd1,22'd0,1'd1})
+  final_sum [31:0] ={1'd0,8'd1,22'd0,1'd1}; //result is NAN
+
   else 
   begin
   
