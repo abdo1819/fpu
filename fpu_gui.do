@@ -1,5 +1,5 @@
 package require Tk
-project open ./fpu; #project directory
+project open ./fpuGUI; #project directory
 wm title . "FPU"
 grid [ttk::frame .c -padding "0 10 15 25"] -column 0 -row 0 -sticky nwes
 
@@ -35,7 +35,7 @@ proc calculate {} \
 		force funct "2#01"
 		execute
 	} elseif { [string equal $::op "/"] == 1 } {
-		force funct"2#10"
+		force funct "2#10"
 		execute		
 	} else {
 		execute 0
