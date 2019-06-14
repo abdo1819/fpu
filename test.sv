@@ -3,7 +3,7 @@ module test();
     reg clk;
     reg [31:0] a,b,opexp;
     logic [31:0] op;
-    reg [31:0] vectornum,errors;
+    reg [31:0] vectornum,errors,warning;
     reg [99:0] testvectors[1000:0];
     logic [1:0] funct; 
     logic [1:0] dommy;
@@ -24,7 +24,7 @@ always
 
 initial begin
     $readmemh("fpu.tv", testvectors);
-    vectornum = 0; errors = 0;
+    vectornum = 0;errors = 0;warning = 0;
 end
 
 always @(posedge clk)
@@ -43,10 +43,21 @@ always @(posedge finish ,negedge clk)
         //     diff = diff * -1;
         //     // dum = op[30:1];
         // dum2 = opexp[30:1];
-        if  ( (opr != opexpr) & ~( (opr-opexpr < 0.01)&(opexpr-opr > -0.01) ) )
 
+        if  ( (opr != opexpr) & ~( (opr-opexpr < 0.00001)&(opexpr-opr > -0.00001) ) )
+            if ((opr-opexpr < 0.1)&(opexpr-opr > -0.1))
             begin
-                $display("operation  = %b ",funct);
+                $display("warning operation  = %b ",funct);
+                
+                $display("input = %f __ %f",$bitstoshortreal(a),$bitstoshortreal(b));
+                $display("output = %h  __ %f",op ,opr);
+                $display("exp    = %h  __ %f\n",opexp ,opexpr);	
+                warning = warning+1;
+
+            end
+            else
+            begin
+                $display("error operation  = %b ",funct);
                 
                 $display("input = %h __ %h",a,b);
                 $display("input = %f __ %f",$bitstoshortreal(a),$bitstoshortreal(b));
@@ -59,7 +70,7 @@ always @(posedge finish ,negedge clk)
         vectornum = vectornum +1;
 
         if(testvectors[vectornum] ===100'bx) begin
-            $display("%d test complate with %d errors" , vectornum , errors);
+            $display("%d test complate with %d errors and %d warning" , vectornum , errors, warning);
             vectornum = vectornum -1;
             $stop();
         end
