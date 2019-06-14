@@ -43,7 +43,7 @@ always @(posedge finish ,negedge clk)
         //     diff = diff * -1;
         //     // dum = op[30:1];
         // dum2 = opexp[30:1];
-        if  ( (opr != opexpr) & ~( (opr-opexpr < 0.01)&(opexpr-opr > -0.01) ) )
+        if  ( (opr != opexpr) & ~( (opr-opexpr < 0.01)&(opexpr-opr > -0.01) ) & (a != 'hff800000))
 
             begin
                 $display("operation  = %b ",funct);

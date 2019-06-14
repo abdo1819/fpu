@@ -187,6 +187,8 @@ if __name__ == "__main__":
         f.write('3'+'_'+row+'\n')
 
 
+    for row in c.randomtest_div(40):
+        f.write('2'+'_'+row+'\n')
 
     for row in c.randomtest_sub(40):
         f.write('1'+'_'+row+'\n')
@@ -195,8 +197,6 @@ if __name__ == "__main__":
         f.write('0'+'_'+row+'\n')
 
 
-    for row in c.randomtest_div(40):
-        f.write('2'+'_'+row+'\n')
 
     for row in c.randomtest_multi(40):
         f.write('3'+'_'+row+'\n')

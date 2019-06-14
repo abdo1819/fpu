@@ -50,13 +50,13 @@ always
     always@(posedge clk, funct,a,b,finish)
     begin
         case(funct)
-            0:#1 o=o1;
-            1:#1 o=o1;
+            0:o=o1;
+            1:o=o1;
             2:if (fin2==1)
-                #1 o=o2;
+                o=o2;
                 else o=32'bz;
-            3:#1 o=o3;
-        default:#1 o=32'bz;
+            3:o=o3;
+        default: o=32'bz;
         endcase
     end
     endmodule
