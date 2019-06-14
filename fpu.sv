@@ -28,7 +28,7 @@ always
                             fin1 ,//flag of finish
                             //flags
                             zero1 ,over1,und1,
-                            funct1//selector for adding operand a + or - operand b
+                            funct[0]//selector for adding operand a + or - operand b
                             );
     
     FPU_division f(clk_div,a,b,o2,fin2);
@@ -46,15 +46,6 @@ always
             endcase
     end
 
-
-    always@(posedge clk, funct[0])
-    begin
-        case(funct[0])
-            0:funct1=0;
-            1:funct1=1;
-            default:funct1=1'bz;
-        endcase
-    end
 
     always@(posedge clk, funct,a,b,finish)
     begin
