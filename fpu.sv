@@ -47,14 +47,12 @@ always
     end
 
 
-    always@(posedge clk, funct,a,b,finish)
+    always_comb
     begin
         case(funct)
             0:o=o1;
             1:o=o1;
-            2:if (fin2==1)
-                o=o2;
-                else o=32'bz;
+            2:o=o2;
             3:o=o3;
         default: o=32'bz;
         endcase
