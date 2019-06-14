@@ -4,7 +4,7 @@ module test();
     reg [31:0] a,b,opexp;
     logic [31:0] op;
     reg [31:0] vectornum,errors;
-    reg [98:0] testvectors[1000:0];
+    reg [99:0] testvectors[1000:0];
     logic [1:0] funct; 
     logic [1:0] dommy;
 
@@ -31,17 +31,20 @@ always @(posedge clk)
     begin
         #1; {dommy,funct,a,b,opexp} = testvectors[vectornum];
     end
-        
+logic [29:0]dum; 
+logic [29:0]dum2; 
 always @(posedge finish ,negedge clk)
     begin
         #10;
         opr = $bitstoshortreal(op);
         opexpr = $bitstoshortreal(opexp);
         diff = opr-opexpr;
-        if(diff < 0)
-            diff = diff * -1;
-        // if( diff > 0.1)
-        if  ( (opr != opexpr) & ~( (opr-opexpr < 0.01)&(opexpr-opr > -0.01) ))
+        // if(diff < 0)
+        //     diff = diff * -1;
+        //     // dum = op[30:1];
+        // dum2 = opexp[30:1];
+        if  ( (opr != opexpr) & ~( (opr-opexpr < 0.01)&(opexpr-opr > -0.01) ) )
+
             begin
                 $display("operation  = %b ",funct);
                 
@@ -53,10 +56,11 @@ always @(posedge finish ,negedge clk)
                 $display("exp    = %h  __ %f\n",opexp ,opexpr);	
                 errors = errors+1;
             end
-            vectornum = vectornum +1;
+        vectornum = vectornum +1;
 
-        if(testvectors[vectornum] ===99'bx) begin
+        if(testvectors[vectornum] ===100'bx) begin
             $display("%d test complate with %d errors" , vectornum , errors);
+            vectornum = vectornum -1;
             $stop();
         end
     end
