@@ -41,7 +41,7 @@ always @(posedge finish ,negedge clk)
         if(diff < 0)
             diff = diff * -1;
         // if( diff > 0.1)
-        if  ( (opr != opexpr) & ~( (opr-opexpr < 0.0001)&(opexpr-opr > -0.0001) ))
+        if  ( (opr != opexpr) & ~( (opr-opexpr < 0.01)&(opexpr-opr > -0.01) ))
             begin
                 $display("operation  = %b ",funct);
                 
