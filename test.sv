@@ -45,8 +45,8 @@ always @(posedge finish ,negedge clk)
             begin
                 $display("operation  = %b ",funct);
                 
-                $display("error input = %h __ %h",a,b);
-                $display("error input = %f __ %f",$bitstoshortreal(a),$bitstoshortreal(b));
+                $display("input = %h __ %h",a,b);
+                $display("input = %f __ %f",$bitstoshortreal(a),$bitstoshortreal(b));
                 $display("a = %b\nb = %b",a,b);
 
                 $display("output = %h  __ %f",op ,opr);

@@ -117,32 +117,48 @@ class converter():
     def randomtest_multi(self, n):
         random_hex =[]
         for i in range(n):
-            f1 = random.random()
-            f2 = random.random()
+            f1 = random.random()*100
+            f2 = random.random()*100
+            if (f1 < 50):
+                f1 = -f1
+            if (f2 > 50):
+                f2 = -f2
             random_hex.append(self.f_h(f1)+'_'+self.f_h(f2)+'_'+self.f_h(f1*f2))
         return random_hex
 
     def randomtest_add(self, n):
         random_hex =[]
         for i in range(n):
-            f1 = random.random()
-            f2 = random.random()
+            f1 = random.random()*100
+            f2 = random.random()*100
+            if (f1 < 50):
+                f1 = -f1
+            if (f2 > 50):
+                f2 = -f2
             random_hex.append(self.f_h(f1)+'_'+self.f_h(f2)+'_'+self.f_h(f1+f2))
         return random_hex
 
     def randomtest_sub(self, n):
         random_hex =[]
         for i in range(n):
-            f1 = random.random()
-            f2 = random.random()
+            f1 = random.random()*100
+            f2 = random.random()*100
+            if (f1 < 50):
+                f1 = -f1
+            if (f2 > 50):
+                f2 = -f2
             random_hex.append(self.f_h(f1)+'_'+self.f_h(f2)+'_'+self.f_h(f1-f2))
         return random_hex
 
     def randomtest_div(self, n):
         random_hex =[]
         for i in range(n):
-            f1 = random.random()
-            f2 = random.random()
+            f1 = random.random()*100
+            f2 = random.random()*100
+            if (f1 < 50):
+                f1 = -f1
+            if (f2 > 50):
+                f2 = -f2
             random_hex.append(self.f_h(f1)+'_'+self.f_h(f2)+'_'+self.f_h(f1/f2))
         return random_hex
 
@@ -171,12 +187,12 @@ if __name__ == "__main__":
         f.write('3'+'_'+row+'\n')
 
 
-    for row in c.randomtest_add(40):
-        f.write('0'+'_'+row+'\n')
-
 
     for row in c.randomtest_sub(40):
         f.write('1'+'_'+row+'\n')
+
+    for row in c.randomtest_add(40):
+        f.write('0'+'_'+row+'\n')
 
 
     for row in c.randomtest_div(40):
