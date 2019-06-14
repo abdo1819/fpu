@@ -29,7 +29,7 @@ end
 
 always @(posedge clk)
     begin
-        #1; {dommy,funct,a,b,opexp} = testvectors[vectornum];
+        {dommy,funct,a,b,opexp} = testvectors[vectornum];
     end
 logic [29:0]dum; 
 logic [29:0]dum2; 
@@ -43,7 +43,7 @@ always @(posedge finish ,negedge clk)
         //     diff = diff * -1;
         //     // dum = op[30:1];
         // dum2 = opexp[30:1];
-        if  ( (opr != opexpr) & ~( (opr-opexpr < 0.01)&(opexpr-opr > -0.01) ) & (a != 'hff800000))
+        if  ( (opr != opexpr) & ~( (opr-opexpr < 0.01)&(opexpr-opr > -0.01) ) )
 
             begin
                 $display("operation  = %b ",funct);
