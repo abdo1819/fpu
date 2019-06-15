@@ -23,7 +23,7 @@ always
 
 
 
-    adder_floating_point a1(clk,a,b, //opreands must be enterd normalized
+           adder_floating_point a1(clk_div,a,b, //opreands must be enterd normalized
                             o1 ,//result
                             fin1 ,//flag of finish
                             //flags
