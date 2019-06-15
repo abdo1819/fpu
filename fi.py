@@ -36,4 +36,9 @@ if len(sys.argv)>2:
 		print("invalid argument!")
 		exit()
 else:
-	print (bin(int(struct.pack('>f',float(sys.argv[1])).hex(),16)).split("b")[1])
+	b = bin(int(struct.pack('>f',float(sys.argv[1])).hex(),16))[2:]
+	if(len(b)<32):
+		x = 32 - len(b)
+		b = '0'*x+b
+	print (b)
+	

@@ -14,6 +14,7 @@ import sys ,struct
 
 
 '''
-h = hex(int(sys.argv[1],2))
-f = (struct.unpack('>f',bytes.fromhex(h[2:10]))[0])
+h =sys.argv[1]
+# h = hex(int(sys.argv[1],2))
+f = (struct.unpack('>f',bytes.fromhex(h))[0])
 print (round(f,ndigits=6))

@@ -1,5 +1,5 @@
 package require Tk
-project open ./fpuGUI; #project directory
+project open ./fpu; #project directory
 wm title . "FPU"
 grid [ttk::frame .c -padding "0 10 15 25"] -column 0 -row 0 -sticky nwes
 
@@ -45,7 +45,7 @@ proc execute {{a 1}} \
 {
 	if { $a == 1 } {
 		run 1000
-		set res_ [examine -binary o]
+		set res_ [examine -hexadecimal o]
 		set ::result [exec python3 ./bi.py $res_];
 	} else {
 		set ::result "use a valid symbol";		

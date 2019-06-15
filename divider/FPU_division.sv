@@ -139,20 +139,23 @@ begin
 	if (Q==1)
 	begin
 	    final_sum [22:0] = RR [24:2];
-		final_sum [29:23] = exponent_dividend - exponent_divisor-1 ;
+		final_sum [30:23] = exponent_dividend - exponent_divisor+127 ;
 	end
 	else
 	begin
 	    final_sum [22:0] = {RR [23:2],1'd0};
-		final_sum [29:23] = exponent_dividend -exponent_divisor-2;
-		final_sum [30]=1'd0;
+		final_sum [30:23] = exponent_dividend -exponent_divisor-1+127;
+	//	final_sum [30]=1'd0;
 	end
-	if (exponent_dividend <=exponent_divisor)
-	 final_sum [30]=1'd0;
-	 else
-	 final_sum [30]=1'd1;
-	final_sum [31]=operand_normalized_ieee_a[31]^operand_normalized_ieee_b[31];
-	end
+	//if (exponent_dividend <=exponent_divisor)
+	//  final_sum [30]=1'd0;
+	//  else
+	//  begin
+	//  final_sum [30]=1'd1;
+	//  final_sum = final_sum >> 1;
+	//  end
+	 final_sum [31]=operand_normalized_ieee_a[31]^operand_normalized_ieee_b[31];
+	 end
 	
  endmodule
    
